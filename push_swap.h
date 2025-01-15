@@ -6,7 +6,7 @@
 /*   By: igomez-s <igomez-s@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:07:10 by igomez-s          #+#    #+#             */
-/*   Updated: 2025/01/15 10:43:12 by igomez-s         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:58:19 by igomez-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	ft_lstadd_front(t_list **, t_list *new);
 t_list	*ft_lstnew(int content);
 char	**ft_split(char const *s, char c);
 int		ft_atoi(const char *str);
-void	print_list(t_list *list);
+void	print_list(t_list **list);
 #endif
