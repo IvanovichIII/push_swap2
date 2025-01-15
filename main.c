@@ -6,46 +6,58 @@
 /*   By: igomez-s <igomez-s@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:03:47 by igomez-s          #+#    #+#             */
-/*   Updated: 2025/01/15 09:41:38 by igomez-s         ###   ########.fr       */
+/*   Updated: 2025/01/15 10:42:52 by igomez-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int start_a(stack **a, int argc, char **argv)
+int start_a(t_list **a, int argc, char **argv)
 {
-	stack	*new;
 	char	**args;
 	int		i;
-	int		*cont;
 
 	if (argc == 3)
 		args = ft_split(argv[2], ' ');
 	else
+	{
+		args = argv;
 		i = 1;
-	args = argv;
-	cont = malloc(sizeof(int));
-	if (!cont)
-		return (1);
+	}
 	while (args[i])
 	{
-		*cont = ft_atoi(args[i]);
-		ft_lstadd_back(a, ft_lstnew(cont));
+		ft_lstadd_back(a, ft_lstnew(ft_atoi(args[i])));
 		i++;
 	}
-	if (args = 0)
-		return (1);
+	return (0);
 }
 
-int	main(int argc, char **argv)
+void print_list(t_list *list)
 {
-	stack	**a;
-	stack	**b;
+	int		i;
+	t_list	*temp;
+
+	temp = list;
+	i = 0;
+	while (temp)
+	{
+		ft_printf("Node %d: %d\n", i, temp->content);
+		temp = temp->next;
+		i++;
+	}
+	ft_printf("\n");
+}
+
+int main(int argc, char **argv)
+{
+	t_list	*a;
+	t_list	*b;
 
 	if (argc < 2)
 		return (1);
-	*a = start_a(a, argc, argv);
-	*b = NULL;
-	print_list(a);	
-
+	a = NULL;
+	b = NULL;
+	start_a(&a, argc, argv);
+	print_list(a);
+	return (0);
 }
