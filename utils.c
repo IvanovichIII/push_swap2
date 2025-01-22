@@ -6,7 +6,7 @@
 /*   By: igomez-s <igomez-s@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 09:37:09 by igomez-s          #+#    #+#             */
-/*   Updated: 2025/01/15 10:44:56 by igomez-s         ###   ########.fr       */
+/*   Updated: 2025/01/18 16:54:55 by igomez-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isdigit(int c)
 {
-		return (c >= '0' && c <= '9');
+	return (c >= '0' && c <= '9');
 }
 
 char	*ft_strdup(const char *str)
@@ -35,7 +35,7 @@ char	*ft_strdup(const char *str)
 	return (or_ptr);
 }
 
-static size_t	ft_countlen(const char *s, char c)
+size_t	ft_countlen(const char *s, char c)
 {
 	size_t	i;
 
@@ -52,44 +52,6 @@ static size_t	ft_countlen(const char *s, char c)
 			s++;
 	}
 	return (i);
-}
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
-{
-	size_t	i;
-	size_t	x;
-
-	x = ft_strlen(src);
-	i = 0;
-	if (size != 0)
-	{
-		while (*src != '\0' && i < size -1)
-		{
-			*dest++ = *src++;
-			i++;
-		}
-		*dest = '\0';
-	}
-	return (x);
-}
-
-char	*ft_substr(const char *s, unsigned int start, size_t len)
-{
-	char	*ptr;
-
-	if (!s)
-		return (NULL);
-	if (start >= (unsigned int)ft_strlen(s))
-		return (ft_strdup(""));
-	if ((unsigned int)ft_strlen(s) < start)
-		len = 0;
-	if ((size_t)ft_strlen(s + start) < len)
-		len = ft_strlen(s + start);
-	ptr = (char *)malloc((len + 1) * sizeof(char));
-	if (!ptr)
-		return (NULL);
-	ft_strlcpy(ptr, s + start, len + 1);
-	return (ptr);
 }
 
 char	**ft_split(const char *s, char c)
@@ -120,68 +82,21 @@ char	**ft_split(const char *s, char c)
 	return (ptr);
 }
 
-int	ft_isspace(int c)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	return ((c >= 9 && c <= 13) || c == 32);
-}
+	char	*ptr;
 
-int	ft_atoi(const char *str)
-{
-	int		sign;
-	long	ret;
-
-	ret = 0;
-	sign = 1;
-	while (ft_isspace(*str))
-		++str;
-	if (*str == '+' || *str == '-')
-		if (*(str++) == '-')
-			sign *= -1;
-	while (ft_isdigit(*str))
-	{
-		ret = ret * 10 + sign * (*str++ - '0');
-		if (ret > INT_MAX)
-			return (-1);
-		else if (ret < INT_MIN)
-			return (0);
-	}
-	return ((int)ret);
-}
-
-t_list	*ft_lstlast(t_list *lst)
-{
-	if (!lst)
+	if (!s)
 		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*ptr;
-
-	ptr = ft_lstlast(*lst);
+	if (start >= (unsigned int)ft_strlen(s))
+		return (ft_strdup(""));
+	if ((unsigned int)ft_strlen(s) < start)
+		len = 0;
+	if ((size_t)ft_strlen(s + start) < len)
+		len = ft_strlen(s + start);
+	ptr = (char *)malloc((len + 1) * sizeof(char));
 	if (!ptr)
-		*lst = new;
-	else
-		ptr->next = new;
-}
-
-void	ft_lstadd_front(t_list **lst, t_list *new)
-{
-	new->next = *lst;
-	*lst = new;
-}
-
-t_list	*ft_lstnew(int content)
-{
-	t_list	*a;
-
-	a = malloc(sizeof(t_list));
-	if (!a)
 		return (NULL);
-	a->content = content;
-	a->next = NULL;
-	return (a);
+	ft_strlcpy(ptr, s + start, len + 1);
+	return (ptr);
 }
