@@ -77,11 +77,10 @@ void	ft_lstclear(t_list **lst)
 	t_list	*temp;
 
 	if (!lst || !*lst)
-		return;
+		return ;
 	while (*lst)
 	{
 		temp = (*lst)->next;
-		//free((*lst)->content);
 		free(*lst);
 		*lst = temp;
 	}

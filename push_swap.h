@@ -68,8 +68,9 @@ void	cp_lst_arr(t_list *list, int *arr);
 void	bubble_sort(int *arr, int size);
 t_list	*find_closest(t_list *a, int target);
 t_list	*find_cheapest(t_list *b);
-void	piv(t_list *list, int *piv1, int *piv2);
+void	piv(t_list *list, int *pivots);
 t_list	*find_min(t_list *lst);
+t_list	*find_max(t_list *lst);
 void	move_b(t_list **a, t_list **b);
 int		calc_dup_err(t_list *a);
 int		calc_ord_err(t_list *a);
@@ -81,7 +82,8 @@ int		calc_none_err(char **argv);
 int		find_err(t_list **a, t_list **b);
 void	small_sort(t_list **a);
 void	five_sort(t_list **a, t_list **b);
-void	iter_a(t_list **a, t_list **b, int *piv1, int *piv2);
+void	iter_a(t_list **a, t_list **b, int *pivots);
 void	big_short(t_list **a, t_list **b);
 void	push_swap(t_list **a, t_list **b);
+
 #endif

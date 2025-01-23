@@ -6,7 +6,7 @@
 /*   By: igomez-s <igomez-s@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:03:47 by igomez-s          #+#    #+#             */
-/*   Updated: 2025/01/20 18:28:13 by igomez-s         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:14:05 by igomez-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,26 @@ void	small_sort(t_list **a)
 		sa(a, 1);
 }
 
-void	iter_a(t_list **a, t_list **b, int *piv1, int *piv2)
-{
-	int	size_a;
+/*void	iter_a(t_list **a, t_list **b, int *piv1, int *piv2)
+  {
+  int	size_a;
 
-	size_a = ft_lstsize(*a);
-	while (*a && size_a > 3)
-	{
-		piv(*a, piv1, piv2);
-		if ((*a)->content <= *piv1)
-		{
-			pb(a, b);
-			rb(b, 1);
-		}
-		else if ((*a)->content > *piv2)
-			ra(a, 1);
-		else
-			pb(a, b);
-		size_a = ft_lstsize(*a);
-	}
-}
+  size_a = ft_lstsize(*a);
+  while (*a && size_a > 3)
+  {
+  piv(*a, piv1, piv2);
+  if ((*a)->content <= *piv1)
+  {
+  pb(a, b);
+  rb(b, 1);
+  }
+  else if ((*a)->content > *piv2)
+  ra(a, 1);
+  else
+  pb(a, b);
+  size_a = ft_lstsize(*a);
+  }
+  }*/
 
 void	big_short(t_list **a, t_list **b)
 {
@@ -69,21 +69,43 @@ void	big_short(t_list **a, t_list **b)
 	move_b(a, b);
 }
 
+/*void	push_swap(t_list **a, t_list **b)
+  {
+  int		piv1;
+  int		piv2;
+  t_list	*lst;
+
+  if (find_err(a, b) == 1)
+  return ;
+  if (ft_lstsize(*a) <= 3)
+  small_sort(a);
+  else
+  {
+  iter_a(a, b, &piv1, &piv2);
+  small_sort(a);
+  while (ft_lstsize(*b) != 0)
+  big_short(a, b);
+  lst = find_min(*a);
+  while ((*a) != lst)
+  rra(a, 1);
+  }
+  }*/
+
 void	push_swap(t_list **a, t_list **b)
 {
-	int		piv1;
-	int		piv2;
+	int		*piv;
 	t_list	*lst;
 
+	piv = malloc(18 * sizeof(int));
 	if (find_err(a, b) == 1)
 		return ;
 	if (ft_lstsize(*a) <= 3)
 		small_sort(a);
-	/*else if (ft_lstsize(*a) == 5)
-		five_sort(a, b);*/
+	if (ft_lstsize(*a) == 5)
+		five_sort(a, b);
 	else
 	{
-		iter_a(a, b, &piv1, &piv2);
+		iter_a(a, b, piv);
 		small_sort(a);
 		while (ft_lstsize(*b) != 0)
 			big_short(a, b);

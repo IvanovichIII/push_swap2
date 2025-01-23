@@ -50,7 +50,7 @@ void	pa(t_list **a, t_list **b)
 	t_list	*temp;
 
 	temp = *b;
-	if (b != NULL)
+	if (*b != NULL)
 	{
 		*b = (*b)->next;
 		temp->next = NULL;
@@ -64,7 +64,7 @@ void	pb(t_list **a, t_list **b)
 	t_list	*temp;
 
 	temp = *a;
-	if (a != NULL)
+	if (*a != NULL)
 	{
 		*a = (*a)->next;
 		temp->next = NULL;
